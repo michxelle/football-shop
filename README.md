@@ -91,7 +91,9 @@ Step-by-step membuat deployment ke PWS
 
 
 
-**Link bagan Django request-response: https://drive.google.com/file/d/16utn4HcQdcFPHNyEqhr61\_2M9\_B3rNSu/view?usp=sharing**
+**Link bagan Django request-response:** 
+
+https://drive.google.com/file/d/16utn4HcQdcFPHNyEqhr61_2M9_B3rNSu/view?usp=sharing
 
 
 
