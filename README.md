@@ -122,3 +122,4 @@ Menurut saya, Django sering dijadikan permulaan pembelajaran pengembangan perang
 
 **Feedback untuk asdos**
 Asdos sangat helpful dan selalu siap siaga di discord setiap ada sesi tutorial.
+
