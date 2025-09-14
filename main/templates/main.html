@@ -1,33 +1,45 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ app_title }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #FFFFFF;
-        }
-        header {
-            background-color: #228B22;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }        
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>{{ app_title }}</h1>
-        </header>
-        <main>
-            <h2 style="text-align: center;">Welcome!</h2>
-            <p style="text-align: center;">Aplikasi ini dibuat oleh <em>{{ name }}</em> dari kelas <em>{{ class }}</em>.</p>            
-        </main>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="text-align: center;">Welcome! We sell football-related products.</h2>    
+<a href="{% url 'main:create_product' %}" style="text-decoration: none;">
+    <button style="display: block; margin: 20px auto; padding: 10px 15px; background-color: #228b22; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+        + Add Product
+    </button>
+</a>  
+
+<hr>
+{% if not product_list %}
+<p>Oops, it looks like we haven't added any products yet. Please check back soon!</p>
+{% else %}
+{% for product in product_list %}
+<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 10px;">
+    {% if product.thumbnail %}
+    <img src="{{ product.thumbnail }}" alt="{{ product.name }}" style="max-width: 150px; max-height: 150px; object-fit: cover; border-radius: 10px;">        
+    <br />
+    {% endif %}
+
+    <h3><a href="{% url 'main:show_product' product.id %}" style="text-decoration: none; color: #000000;">{{ product.name }}</a></h3>
+
+    <p style="color: #4c4a4a;"><b>{{ product.get_category_display }}</b> | Brand: {{ product.brand }}
+        {% if product.is_featured %} | <b>Featured</b>{% endif %}
+    </p>
+    
+    <p style="font-weight: bold;">${{ product.price }}</p>
+
+    {% if product.stock > 0 %}
+    <p style="color: green; font-weight: bold;">Available</p>
+    {% else %}
+    <p style="color: red; font-weight: bold;">Out of Stock</p>
+    {% endif %}  
+    <br />  
+    <a href="{% url 'main:show_product' product.id %}" style="text-decoration: none; color: #228b22; font-weight: bold;">
+        <button style="padding: 8px 12px; background-color: #e0e0e0; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+            View Details
+        </button>
+    </a>
+</div>
+<br />
+{% endfor %}
+{% endif %}
+{% endblock %}

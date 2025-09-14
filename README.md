@@ -2,7 +2,9 @@
 
 **Link aplikasi PWS = https://laudya-michelle-footballshop.pbp.cs.ui.ac.id/**
 
-
+------------------------------------------------------------------------
+TUGAS 2
+------------------------------------------------------------------------
 
 **Step-by-step membuat proyek Django baru**
 
@@ -125,3 +127,57 @@ Menurut saya, Django sering dijadikan permulaan pembelajaran pengembangan perang
 **Feedback untuk asdos**
 Asdos sangat helpful dan selalu siap siaga di discord setiap ada sesi tutorial.
 
+------------------------------------------------------------------------
+TUGAS 3
+------------------------------------------------------------------------
+**Step by step menambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID**
+1.	[Dalam views.py] Meng-import HttpResponse, serializers, dan model Product yang telah dibuat sebelumnya
+2.	[Dalam views.py] Membuat fungsi show_xml yang menerima parameter request. Fungsi ini akan mengambil semua objek dari model Product dan mengonversinya ke format XML
+3.	[Dalam views.py] Membuat fungsi show_json yang menerima parameter request. Fungsi ini akan mengambil semua objek dari model Product dan mengonversinya ke format JSON
+4.	[Dalam views.py] Membuat fungsi show_xml_by_id yang menerima parameter request dan product_id. Fungsi ini akan mencari satu objek Product yang memiliki primary key sesuai dengan product_id lalu mengonversinya jadi format XML.
+5.	[Dalam views.py] Membuat fungsi show_json_by_id yang menerima parameter request dan product_id. Fungsi ini akan mencari satu objek Product yang memiliki primary key sesuai dengan product_id lalu mengonversinya jadi format JSON.
+
+**Step by step membuat routing URL untuk masing-masing views yang telah ditambahkan**
+1.	[Dalam urls.py direktori main] Meng-import keempat fungsi yang baru saja dibuat, yaitu show_xml, show_json, show_xml_by_id, dan show_json_by_id
+2.	[Dalam urls.py direktori main] Menambahkan 4 path() baru, yaitu untuk endpoint /xml/, /json/, /xml/str:product_id/, dan /json/str:product_id/
+
+**Step by step membuat halaman yang menampilkan data objek model yang memiliki tombol "Add" yang akan redirect ke halaman form, serta tombol "Detail" pada setiap data objek model yang akan menampilkan halaman detail objek**
+1.	[Dalam direktori utama] Membuat direktori templates dan membuat file base.html di dalamnya. Berkas ini digunakan sebagai base template yang dapat digunakan sebagai kerangka umum untuk halaman web lain di dalam proyek
+2.	[Dalam main/settings.py] Mengubah isi key 'DIRS' pada TEMPLATES menjadi 'DIRS': [BASE_DIR / 'templates'] agar base.html terdeteksi sebagai file template
+3.	[Dalam direktori main] Membuat file baru Bernama forms.py untuk membuat struktur form yang dapat menerima data Product baru
+4.	[Dalam main/forms.py] Meng-import ModelForm dan Product
+5.	[Dalam main/forms.py] Membuat kelas ProductForm yang menerima parameter ModelForm
+6.	[Dalam main/forms.py] Membuat kelas Meta di dalam ProductForm yang digunakan untuk memberi tahu Django terkait Model dan field yang akan dimasukkan ke form
+7.	[Dalam main/views.py] Meng-import redirect, get_object_or_404, dan ProductForm
+8.	[Dalam main/views.py] Menambahkan Product.objects.all() pada fungsi show_main untuk mengambil semua objek Product yang ada di database
+9.	[Dalam main/views.py] Menambahkan 'product_list': product_list pada context fungsi show_main
+10.	[Dalam main/views.py] Menambahkan fungsi create_product yang berfungsi untuk menghasilkan form yang memungkinkan penambahan data Product secara otomatis saat data di-submit dari form
+11.	[Dalam main/views.py] Menambahkan fungsi show_product. Fungsi ini memakai get_object_or_404(Product, pk=product_id) untuk mengambil objek Product yang sesuai dengan primary key. Jika objek tidak ditemukan, maka halaman 404 akan ditampilkan
+12.	[Dalam main/urls.py] Meng-import fungsi create_product dan show_product, lalu menambahkan path() baru dengan endpoint /create_product/ dan /product/str:product_id/
+13.	[Dalam main/templates/main.html] Mengubah kode yang ada di main.html agar meng-extend base.html
+14.	[Dalam main/templates/main.html] Mengisi block content dengan menambahkan kode untuk tombol "+ Add Product" yang akan redirect ke halaman form dan menambahkan kode untuk tombol "View Details" untuk setiap Product yang akan redirect ke halaman detail product atau objek
+
+**Step by step membuat halaman form untuk menambahkan objek model pada app sebelumnya**
+1.	[Dalam main/templates] Membuat file HTML baru bernama create_product.html yang meng-extend base.html. File ini berfungsi sebagai template halaman form
+2.	[Dalam football_shop/settings.py] Menambahkan entri url proyek pws pada CSRF_TRUSTED_ORIGINS
+
+**Step by step membuat halaman yang menampilkan detail dari setiap data objek model**
+1.	[Dalam main/templates] Membuat file HTML baru bernama product_detail.html yang meng-extend base.html. File ini berfungsi sebagai template halaman detail produk
+
+**POSTMAN (link screenshot)**
+https://drive.google.com/drive/folders/17Tgljj_z2FgR5oWvHLN5RMejGMoLYJx8?usp=sharing
+
+**Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?**
+Kita memerlukan data delivery dalam pengimplementasian sebuah platform karena data delivery memungkinkan pertukaran informasi antara server dan client, atau antarsistem yang berbeda. Dengan adanya data delivery, aplikasi dapat menampilkan informasi yang dapat diperbarui sesuai kebutuhan pengguna secara real-time dan memfasilitasi integrasi dengan layanan atau aplikasi lain. Tanpa mekanisme pengiriman data yang baik, platform akan susah beradaptasi dengan kebutuhan pengguna yang terus berubah dan tidak dapat berkomunikasi secara efektif dengan sistem-sistem lain
+
+**Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?**
+Menurut saya, JSON lebih baik dibandingkan XML terutama untuk kebutuhan pengembangan aplikasi web yang modern. Saya menganggap JSON lebih baik daripada XML karena JSON memiliki struktur yang lebih sederhana dan mudah dipahami baik oleh manusia maupun mesin. JSON juga terintegrasi dengan JavaScript sehingga proses parsing dan manipulasi data menjadi lebih cepat dan efisien. Sementara itu, XML cenderung lebih kompleks formatnya sehingga kurang praktis untuk digunakan. Oleh karena itu, JSON menjadi lebih populer dan lebih banyak digunakan dibanding XML
+
+**Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?**
+Method is_valid() pada form Django berfungsi untuk memeriksa apakah data yang dimasukkan ke dalam form sudah sesuai dengan aturan validasi yang ditentukan pada model atau form tersebut. Method ini akan mengembalikan/me-return nilai True jika data valid. Jika ada kesalahan, method akan mengembalikan/me-return nilai False. Kita membutuhkan method is_valid() karena dengan menggunakan method tersebut, kita dapat memastikan bahwa hanya data yang benar dan sesuai yang akan diproses atau disimpan ke database. Hal ini akan mencegah terjadinya error atau data yang tidak konsisten
+
+**Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?**
+Kita membutuhkan csrf_token saat membuat form di Django untuk melindungi aplikasi dari serangan Cross Site Request Forgery (CSRF). Token ini memastikan bahwa request yang dikirim ke server benar-benar berasal dari pengguna yang sah dan bukan dari pihak ketiga yang berusaha menyalahgunakan sesi pengguna. Jika csrf_token tidak ditambahkan, penyerang dapat membuat form palsu di situs lain yang mengirim request ke aplikasi kita atas nama pengguna tanpa sepengetahuan mereka. Hal ini dapat dimanfaatkan oleh penyerang untuk melakukan aksi berbahaya, seperti mengubah data atau melakukan transaksi tanpa izin dari pengguna.
+
+**Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?**
+Feedback untuk asdos di tutorial 2 : Asdos sangat membantu karena mereka stand-by di voice room discord dan siap membantu mahasiswa jika ada kendala
