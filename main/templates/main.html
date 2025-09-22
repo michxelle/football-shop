@@ -1,14 +1,37 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h2 style="text-align: center;">Welcome! We sell football-related products.</h2>    
+<h2 style="text-align: center;">
+    Welcome{% if user.is_authenticated %}, {{ user.username }}{% endif %}! We sell football-related products.
+</h2>
+
 <a href="{% url 'main:create_product' %}" style="text-decoration: none;">
     <button style="display: block; margin: 20px auto; padding: 10px 15px; background-color: #228b22; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
         + Add Product
     </button>
 </a>  
+<a href="{% url 'main:login' %}" style="text-decoration: none;">
+    <button style="display: block; margin: 20px auto; padding: 10px 15px; background-color: #228b22; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+        Logout
+    </button>
+</a>
+
+<p style="color: #555;">Last login session: {{ last_login }}</p>
 
 <hr>
+
+<a href="?filter=all" style="text-decoration: none; margin-right: 10px;">
+    <button style="padding: 8px 12px; background-color: #e0e0e0; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+        All Products
+    </button>
+</a>
+<a href="?filter=user" style="text-decoration: none;">
+    <button style="padding: 8px 12px; background-color: #e0e0e0; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+        My Products
+    </button>
+</a>
+<br /><br />
+
 {% if not product_list %}
 <p>Oops, it looks like we haven't added any products yet. Please check back soon!</p>
 {% else %}
