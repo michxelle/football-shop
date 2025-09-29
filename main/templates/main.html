@@ -1,68 +1,54 @@
+
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Footballed Co.</title>
+{% endblock meta %}
 
 {% block content %}
-<h2 style="text-align: center;">
-    Welcome{% if user.is_authenticated %}, {{ user.username }}{% endif %}! We sell football-related products.
-</h2>
+<div class="bg-gray-50 w-full pt-12 min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header Section -->
+        <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">Football Products</h1>
+                <p class="text-gray-600">Shop your favorite football products here!</p>
+            </div>
+        </div>
 
-<a href="{% url 'main:create_product' %}" style="text-decoration: none;">
-    <button style="display: block; margin: 20px auto; padding: 10px 15px; background-color: #228b22; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
-        + Add Product
-    </button>
-</a>  
-<a href="{% url 'main:login' %}" style="text-decoration: none;">
-    <button style="display: block; margin: 20px auto; padding: 10px 15px; background-color: #228b22; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
-        Logout
-    </button>
-</a>
+        <!-- Filter Section -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 bg-white rounded-lg border border-gray-200 p-4">
+            <div class="flex space-x-3 mb-4 sm:mb-0">
+                <a href="?filter=all" class="filter-btn {% if request.GET.filter == 'all' or not request.GET.filter %}active-filter{% endif %}">All Products</a>
+                <a href="?filter=user" class="filter-btn {% if request.GET.filter == 'user' %}active-filter{% endif %}">My Products</a>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="text-sm text-gray-500">
+                    Last login: {{ last_login }}
+                </div>
+            {% endif %}
+        </div>
 
-<p style="color: #555;">Last login session: {{ last_login }}</p>
-
-<hr>
-
-<a href="?filter=all" style="text-decoration: none; margin-right: 10px;">
-    <button style="padding: 8px 12px; background-color: #e0e0e0; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
-        All Products
-    </button>
-</a>
-<a href="?filter=user" style="text-decoration: none;">
-    <button style="padding: 8px 12px; background-color: #e0e0e0; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
-        My Products
-    </button>
-</a>
-<br /><br />
-
-{% if not product_list %}
-<p>Oops, it looks like we haven't added any products yet. Please check back soon!</p>
-{% else %}
-{% for product in product_list %}
-<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 10px;">
-    {% if product.thumbnail %}
-    <img src="{{ product.thumbnail }}" alt="{{ product.name }}" style="max-width: 150px; max-height: 150px; object-fit: cover; border-radius: 10px;">        
-    <br />
-    {% endif %}
-
-    <h3><a href="{% url 'main:show_product' product.id %}" style="text-decoration: none; color: #000000;">{{ product.name }}</a></h3>
-
-    <p style="color: #4c4a4a;"><b>{{ product.get_category_display }}</b> | Brand: {{ product.brand }}
-        {% if product.is_featured %} | <b>Featured</b>{% endif %}
-    </p>
-    
-    <p style="font-weight: bold;">${{ product.price }}</p>
-
-    {% if product.stock > 0 %}
-    <p style="color: green; font-weight: bold;">Available</p>
-    {% else %}
-    <p style="color: red; font-weight: bold;">Out of Stock</p>
-    {% endif %}  
-    <br />  
-    <a href="{% url 'main:show_product' product.id %}" style="text-decoration: none; color: #228b22; font-weight: bold;">
-        <button style="padding: 8px 12px; background-color: #e0e0e0; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
-            View Details
-        </button>
-    </a>
+        <!-- Product Grid -->
+        {% if not product_list %}
+            <div class="bg-white rounded-lg border border-gray-200 p-12 text-center">
+                <div class="w-32 h-32 mx-auto mb-4">
+                    <img src="{% static 'image/no-product.png' %}" alt="No products available" class="w-full h-full object-contain">
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No products found</h3>
+                <p class="text-gray-500 mb-6">Be the first to add a football product to the shop.</p>
+                <a href="{% url 'main:create_product' %}" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                    Add Product
+                </a>
+            </div>
+        {% else %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for product in product_list %}
+                    {% include 'product_card.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 </div>
-<br />
-{% endfor %}
-{% endif %}
 {% endblock %}

@@ -1,49 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block meta %} {% endblock meta %}
+    {% block meta %} {% endblock meta %}    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>{% block title %}{{ app_title }}{% endblock %}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .container {            
-            flex: 1;
-        }
-        header {
-            background-color: #228b22;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        footer {
-            background-color: #f1f1f1;
-            color: #888;
-            padding: 10px 0;
-            text-align: center;          
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>{{ app_title }}</h1>
-        </header>
-        <main>
-            {% block content %}{% endblock content %}
-        </main>
-    </div>
-    <footer>
-        Dibuat oleh <em>{{ name }}</em> dari kelas <em>{{ class }}</em>.
-    </footer>
-</body>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="container pt-20">
+            <main>
+                {% block content %}{% endblock content %}
+            </main>
+        </div>
+        <footer>
+            Dibuat oleh <em>{{ name }}</em> dari kelas <em>{{ class }}</em>.
+        </footer>
+    </body>
 </html>

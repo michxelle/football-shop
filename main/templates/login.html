@@ -1,32 +1,71 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<title>Login</title>
+<title>Login - Footballed Co.</title>
 {% endblock meta %}
 
 {% block content %}
-<div class="login">
-    <h2 style="text-align: center;">Login</h2>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table style="margin: 0 auto;">
-            {{ form.as_table }}
-            <tr>
-                <td></td>
-                <td>
-                    <input class="btn login_btn" type="submit" value="Login"/>
-                </td>
-            </tr>
-        </table>
-    </form>
+<div class="login-bg">
+    <div class="login-container">
+        <div class="form-card login-card">
+            <div class="login-header">
+                <h2 class="login-title">Login</h2>
+                <p class="login-subtitle">Welcome back to Footballed Co.</p>
+            </div>
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register here</a>.
+            {% if form.non_field_errors %}
+                <div class="form-error-list">
+                    {% for error in form.non_field_errors %}
+                        <div class="form-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if form.errors %}
+                <div class="form-error-list">
+                    {% for field, errors in form.errors.items %}
+                        {% if field != '__all__' %}
+                            {% for error in errors %}
+                                <div class="form-error"><strong>{{ field|title }}:</strong> {{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="POST" class="login-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username" class="form-label">Username</label>
+                    <input id="id_username" name="username" type="text" required class="form-input" placeholder="Enter your username" value="{{ form.username.value|default:'' }}">
+                </div>
+                <div class="form-group">
+                    <label for="id_password" class="form-label">Password</label>
+                    <input id="id_password" name="password" type="password" required class="form-input" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn login-btn">Login</button>
+            </form>
+
+            {% if messages %}
+                <div class="form-message-list">
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <div class="form-message form-message-success">{{ message }}</div>
+                        {% elif message.tags == 'error' %}
+                            <div class="form-message form-message-error">{{ message }}</div>
+                        {% else %}
+                            <div class="form-message form-message-info">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="login-footer">
+                <p>
+                    Don't have an account?
+                    <a href="{% url 'main:register' %}" class="login-link">Register Now</a>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}

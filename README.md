@@ -267,3 +267,75 @@ Untuk mengatasi risiko tersebut, Django menyediakan beberapa mekanisme keamanan,
 - Menyediakan opsi Secure pada cookies yang memastikan cookies hanya dikirim melalui koneksi HTTPS sehingga melindungi data dari penyadapan.
 - Menggunakan CSRF tokens untuk melindungi aplikasi dari serangan CSRF.
 - Menyediakan pengaturan untuk mengatur masa berlaku cookies sehingga cookies tidak bertahan lebih lama dari yang diperlukan.
+
+------------------------------------------------------------------------
+TUGAS 5
+------------------------------------------------------------------------
+
+**Step by step mengimplementasikan fungsi untuk menghapus dan mengedit product**
+1. [Dalam views.py] Membuat fungsi edit_product yang menerima parameter request dan product_id. Fungsi ini akan menampilkan form yang sudah terisi dengan data produk yang akan diedit dan memproses data yang di-submit dari form tersebut
+2. [Dalam views.py] Membuat fungsi delete_product yang menerima parameter request dan product_id. Fungsi ini akan menghapus produk yang sesuai dengan product_id dari database
+3. [Dalam main/urls.py] Meng-import fungsi edit_product dan delete_product
+4. [Dalam main/urls.py] Menambahkan path() baru dengan endpoint /product/str:product_id/edit/ dan /product/str:product_id/delete/
+5. [Dalam edit_product.html] Membuat file HTML baru bernama edit_product.html yang meng-extend base.html. File ini berfungsi sebagai template halaman form edit produk
+6. [Dalam main.html] Menambahkan tombol "Edit" dan "Delete" yang akan redirect ke halaman edit produk
+7. [Dalam main.html] Mengadakan konfirmasi sebelum menghapus produk
+
+**Step by step mengustomisasi desain halaman login, register, tambah product, edit product, dan detail product menggunakan CSS atau CSS framework (Tailwind)**
+1.	[Dalam direktori utama] Membuat direktori static di dalamnya
+2.	[Dalam direktori static] Membuat direktori css di dalamnya
+3.	[Dalam direktori static/css] Membuat file styles.css yang berisi kode CSS untuk mengatur tampilan halaman web
+4. [Dalam settings.py] Menambahkan middleware WhiteNoiseMiddleware ke dalam MIDDLEWARE agar file static dapat diakses
+5. [Dalam settings.py] Menambahkan STATIC_URL, STATICFILES_DIRS, dan STATIC_ROOT agar file static dapat diakses
+6. [Dalam base.html] Menambahkan link ke file styles.css agar semua halaman yang meng-extend base.html dapat menggunakan file CSS tersebut
+7.	[Dalam setiap file HTML] Menambahkan class CSS pada tag HTML 
+8. [Dalam styles.css] Menambahkan custom CSS untuk mengatur tampilan form, tombol, dan layout.
+
+**Step by step Kustomisasi halaman daftar product menjadi lebih menarik dan responsive**
+1. [Dalam main.html] Mengubah struktur HTML untuk menampilkan produk dalam bentuk grid
+2. [Dalam main.html] Menambahkan class CSS pada elemen grid untuk mengatur tampilannya
+3. Membuat file product_card.html di dalam direktori templates yang berisi kode HTML untuk menampilkan informasi produk dalam bentuk card
+4. [Dalam product_card.html] Menambahkan class CSS pada elemen card untuk mengatur tampilannya
+5. [Dalam main.html] Menggunakan include dalam for loop untuk memasukkan product_card.html ke dalam main.html sehingga setiap produk ditampilkan dalam bentuk card
+
+**Step by step untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut**
+1. [Dalam product_card.html] Menambahkan tombol "Edit" dan "Delete" pada setiap card produk
+2. [Dalam product_card.html] Menambahkan link pada tombol "Edit" dan "Delete" yang mengarah ke fungsi edit_product dan delete_product
+
+**Step by step membuat navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop yang ada hamburger menu pada tampilan mobile**
+1. Membuat file navbar.html di dalam direktori templates yang berisi kode HTML untuk menampilkan navigation bar
+2. [Dalam navbar.html] Menambahkan kode untuk tampilan desktop dan mobile, termasuk hamburger menu untuk tampilan mobile
+3. [Dalam base.html] Menggunakan include untuk memasukkan navbar.html ke dalam base.html
+
+**Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!**
+Urutan prioritas pengambilan CSS selector adalah sebagai berikut:
+1. Inline CSS (menggunakan atribut style pada elemen HTML)
+2. ID selectors (menggunakan tanda # diikuti dengan nama ID)
+3. Class selectors (menggunakan tanda . diikuti dengan nama class)
+4. Element selectors (menggunakan nama elemen HTML seperti div, p, h1, dll)
+5. Universal selector (menggunakan tanda *)
+Jika terdapat konflik antara beberapa selector, maka selector dengan prioritas lebih tinggi yang akan diterapkan. Jika dua selector memiliki prioritas yang sama, maka yang terakhir didefinisikan dalam kode CSS yang akan diterapkan.
+
+**Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!**
+Responsive design menjadi konsep yang penting dalam pengembangan aplikasi web karena memungkinkan tampilan dan fungsionalitas situs web menyesuaikan diri dengan berbagai ukuran layar dan perangkat yang digunakan oleh pengguna. Dengan semakin beragamnya perangkat yang digunakan untuk mengakses internet, seperti smartphone, tablet, laptop, dan desktop, responsive design memastikan bahwa pengalaman pengguna tetap optimal tanpa perlu membuat versi terpisah untuk setiap jenis perangkat. Hal ini akan meningkatkan aksesibilitas, SEO (Search Engine Optimization), dan kepuasan pengguna.
+
+Contoh aplikasi yang sudah menerapkan responsive design adalah Google. Aplikasi ini menyesuaikan tampilannya dengan baik pada berbagai perangkat sehingga pengguna dapat dengan mudah mengakses dan berinteraksi dengan konten aplikasi tanpa terjadinya masalah dengan tampilan aplikasi.
+
+Sebaliknya, contoh aplikasi yang belum menerapkan responsive design adalah SIAK-NG (Sistem Informasi Akademik UI). Jika diakses melalui smartphone, tampilan SIAK-NG sering kali terlalu kecil, elemen-elemen tidak menyesuaikan layar, dan pengguna harus melakukan zoom manual untuk membaca informasi atau menekan tombol. Hal ini membuat pengalaman pengguna menjadi kurang nyaman, terutama bagi mahasiswa yang sering mengakses SIAK-NG melalui perangkat mobile. Kurangnya responsive design pada aplikasi seperti ini dapat mengurangi aksesibilitas dan menyulitkan pengguna dalam mendapatkan informasi yang dibutuhkan.
+
+**Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!**
+Perbedaan antara margin, border, dan padding adalah:
+- Margin adalah ruang di luar border elemen yang memisahkan elemen tersebut dari elemen lain di sekitarnya. Margin digunakan untuk mengatur jarak antar elemen.
+- Border adalah garis yang mengelilingi elemen dan memisahkan padding dari margin. Border digunakan untuk memberikan batas visual pada elemen.
+- Padding adalah ruang di dalam border elemen yang memisahkan konten elemen dari border. Padding digunakan untuk memberikan jarak antara konten elemen dan tepi elemen itu sendiri.
+Intinya, urutan dari dalam ke luar adalah konten -> padding -> border -> margin.
+
+Cara untuk mengimplementasikan ketiga hal tersebut adalah dengan menggunakan properti CSS berikut:
+- Untuk mengatur margin, gunakan properti margin, misalnya: margin: 10px (untuk margin 10px di semua sisi)
+- Untuk mengatur border, gunakan properti border, misalnya: border: 2px solid black (untuk border hitam dengan ketebalan 2px)
+- Untuk mengatur padding, gunakan properti padding, misalnya: padding: 15px (untuk padding 15px di semua sisi)
+
+**Jelaskan konsep flex box dan grid layout beserta kegunaannya!**
+Flexbox (Flexible Box Layout) adalah metode layout satu dimensi yang digunakan untuk mengatur elemen dalam satu baris atau kolom. Flexbox memungkinkan elemen untuk menyesuaikan ukuran dan posisi mereka secara fleksibel berdasarkan ruang yang tersedia. Kegunaan flexbox termasuk mengatur tata letak yang responsif, menyusun elemen secara horizontal atau vertikal, dan mengelola ruang antar elemen dengan mudah. 
+
+Grid layout adalah metode layout dua dimensi yang memungkinkan pengaturan elemen dalam baris dan kolom. Grid layout memberikan kontrol yang lebih besar atas tata letak yang kompleks dengan memungkinkan elemen untuk menempati beberapa baris atau kolom sekaligus. Kegunaan grid layout termasuk membuat tata letak halaman yang kompleks, mengatur elemen dalam struktur yang terorganisir/lebih rapi, dan menciptakan desain yang responsif dengan mudah.
