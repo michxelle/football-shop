@@ -1,8 +1,10 @@
 header {
     background-color: #228b22;
     color: white;
-    padding: 10px 0;
+    padding: 32px 0;
     text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 .create-form input[type="checkbox"] {
@@ -41,7 +43,7 @@ header {
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }
 .login-bg, .register-bg, .create-bg {
-	background: #f6f8fa;
+	background: #fffffc;
 	min-height: 100vh;
 	display: flex;
 	align-items: center;
@@ -187,7 +189,7 @@ textarea {
 body {
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    background-color: #fffffc;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -196,10 +198,11 @@ body {
 	flex: 1;
 }
 footer {
-	background-color: #f1f1f1;
-	color: #888;
-	padding: 10px 0;
-	text-align: center;          
+    background-color: #f1f1f1;
+    color: #888;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: 2rem;
 }
 .form-card {
     background: #f9f9f9;

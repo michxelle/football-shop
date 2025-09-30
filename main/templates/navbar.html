@@ -17,7 +17,7 @@
 			<div class="hidden md:flex items-center space-x-4">
 				{% if user.is_authenticated %}
 					<span class="text-sm font-medium text-gray-900">{{ user.username }}</span>
-					   <a href="{% url 'main:logout' %}" class="text-red-600 hover:text-red-700 font-medium transition-colors">Logout</a>
+					   <a href="{% url 'main:logout' %}" class="text-white bg-red-600 border rounded-lg px-4 py-2 font-medium transition-colors hover:bg-[#781727] hover:text-white">Logout</a>
 				{% else %}
 					   <a href="{% url 'main:login' %}" class="text-gray-600 hover:text-green-700 font-medium transition-colors">Login</a>
 					   <a href="{% url 'main:register' %}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-medium transition-colors">Register</a>

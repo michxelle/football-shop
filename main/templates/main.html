@@ -7,7 +7,7 @@
 {% endblock meta %}
 
 {% block content %}
-<div class="bg-gray-50 w-full pt-12 min-h-screen">
+<div class="bg-[#fffffc] w-full pt-12 min-h-screen">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
         <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between">
@@ -37,7 +37,7 @@
                     <img src="{% static 'image/no-product.png' %}" alt="No products available" class="w-full h-full object-contain">
                 </div>
                 <h3 class="text-lg font-medium text-gray-900 mb-2">No products found</h3>
-                <p class="text-gray-500 mb-6">Be the first to add a football product to the shop.</p>
+                <p class="text-gray-500 mb-6">Sorry, there are no products available at the moment.</p>
                 <a href="{% url 'main:create_product' %}" class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
                     Add Product
                 </a>
