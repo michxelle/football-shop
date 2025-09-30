@@ -1,3 +1,10 @@
+header {
+    background-color: #228b22;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
 .create-form input[type="checkbox"] {
     width: 1.25rem;
     height: 1.25rem;
