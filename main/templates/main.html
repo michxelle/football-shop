@@ -255,5 +255,19 @@ function initializeProductPage() {
 
 // Start application
 initializeProductPage();
+
+// Add Product button in empty state
+const addProductBtn = document.getElementById('add-product-btn');
+if (addProductBtn) {
+  addProductBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (typeof openCreateModalBtn !== 'undefined') {
+      openCreateModalBtn.click();
+    } else {
+      // Fallback: open modal manually if openCreateModalBtn is not available
+      if (typeof openModal === 'function') openModal();
+    }
+  });
+}
 </script>
 {% endblock content %}
