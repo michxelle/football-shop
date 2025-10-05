@@ -72,4 +72,38 @@
         </div>
      </div>
 </div>
+<script>
+document.querySelector('.register-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const username = document.getElementById('id_username').value;
+    const password1 = document.getElementById('id_password1').value;
+    const password2 = document.getElementById('id_password2').value;
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // ambil CSRF token
+
+    const response = await fetch('/register-ajax/', {
+        method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrfToken
+        },
+        body: new URLSearchParams({ username, password1, password2 })
+    });
+    if (response.ok) {
+        showToast({
+            title: "Success",
+            message: "Register successful! Redirecting to login...",
+            type: "success"
+        });        
+        setTimeout(() => {
+            window.location.href = '/login/';
+        }, 1200); 
+    } else {
+        showToast({
+            title: "Error",
+            message: "Register failed! Please check your input.",
+            type: "error"
+        });
+    }
+});
+</script>
 {% endblock content %}

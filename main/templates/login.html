@@ -68,4 +68,36 @@
         </div>
     </div>
 </div>
+<script>
+document.querySelector('.login-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const username = document.getElementById('id_username').value;
+    const password = document.getElementById('id_password').value;
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const response = await fetch('/login-ajax/', {
+        method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrfToken
+        },
+        body: new URLSearchParams({ username, password })
+    });
+    if (response.ok) {
+        showToast({
+            title: "Success",
+            message: "Login successful! Redirecting...",
+            type: "success"
+        });
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 1200); 
+    } else {
+        showToast({
+            title: "Error",
+            message: "Login failed! Please check your credentials.",
+            type: "error"
+        });
+    }
+});
+</script>
 {% endblock content %}
