@@ -29,5 +29,9 @@
         <footer>
             Dibuat oleh <em>{{ name }}</em> dari kelas <em>{{ class }}</em>.
         </footer>
+        {% include 'toast.html' %}
+        {% if not request.path == '/login/' and not request.path == '/register/' and not request.path == '/create_product/' %}
+            {% include 'modal.html' %}
+        {% endif %}
     </body>
 </html>

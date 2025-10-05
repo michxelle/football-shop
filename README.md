@@ -7,23 +7,19 @@ TUGAS 2
 ------------------------------------------------------------------------
 
 **Step-by-step membuat proyek Django baru**
-
 1. Membuat direktori baru Bernama football-shop agar semua file proyek tersimpan rapi dalam satu folder khusus
 2. Membuka terminal dan masuk ke direktori football-shop
 3. Membuat virtual environment dengan perintah *python -m venv env* agar dependencies proyek ini terpisah dari Python global yang ada di laptop
-4. Mengaktifkan virtual environment dengan perintah *env\\Scripts\\activate*
+4. Mengaktifkan virtual environment dengan perintah *env\Scripts\activate*
 5. Menginstall dependencies yang ada dalam file requirements.txt dengan perintah *pip install -r requirements.txt* supaya library yg dibutuhkan langsung tersedia (tidak perlu command install satu per satu)
-6. Membuat proyek Django dengan nama football\_shop dengan perintah django-admin startproject football\_shop .
+6. Membuat proyek Django dengan nama football_shop dengan perintah django-admin startproject football_shop .
 7. Pada direktori utama, saya membuat file .env dan menambahkan konfigurasi PRODUCTION=false pada file tersebut
-8. Pada direktori utama, saya membuat file .env.prod dan melakukan konfigurasi production. SCHEMA yang digunakan adalah tugas\_individu
-9. Melakukan beberapa konfigurasi pada settings.py, seperti library, konfigurasi ALLOWED\_HOSTS, PRODUCTION, dan DATABASES
+8. Pada direktori utama, saya membuat file .env.prod dan melakukan konfigurasi production. SCHEMA yang digunakan adalah tugas_individu
+9. Melakukan beberapa konfigurasi pada settings.py, seperti library, konfigurasi ALLOWED_HOSTS, PRODUCTION, dan DATABASES
 10. Melakukan migrasi database dengan perintah python manage.py migrate
 11. Menonaktifkan virtual environment karena proyek Django sudah berhasil dibuat
 
-
-
 **Step-by-step mengunggah proyek ke repositori GitHub**
-
 1. Membuat repositori GitHub Bernama football-shop
 2. Menjalankan perintah git init di terminal direktori lokal football-shop untuk menjadikan folder ini sebagai repositori git
 3. Menambahkan berkas README.md
@@ -32,52 +28,35 @@ TUGAS 2
 6. Membuat branch utama bernama master
 7. Melakukan add, commit, dan push dari direktori repositori lokal
 
-
-
 **Step-by-step membuat aplikasi main**
-
 1. Mengaktifkan virtual environment
 2. Membuat aplikasi baru bernama main dengan perintah *python manage.py startapp main*
-3. \[Dalam settings.py] Menambahkan 'main' ke INSTALLED\_APPS agar aplikasi main terdaftar dalam proyek
-
-
+3. [Dalam settings.py] Menambahkan 'main' ke INSTALLED_APPS agar aplikasi main terdaftar dalam proyek
 
 **Step-by-step membuat model pada aplikasi main dengan nama Product**
-
-1. \[Dalam models.py] Membuat variable list CATEGORY\_CHOICES yang berisi tuple
-2. \[Dalam models.py] Mendefinisikan model dengan nama Product yang memiliki atribut name, price, description, thumbnail, category, is\_featured, stock, dan brand
+1. [Dalam models.py] Membuat variable list CATEGORY_CHOICES yang berisi tuple
+2. [Dalam models.py] Mendefinisikan model dengan nama Product yang memiliki atribut name, price, description, thumbnail, category, is_featured, stock, dan brand
 3. Melakukan python manage.py makemigrations untuk membuat migrasi model dan python manage.py migrate untuk menerapkan migrasi ke database local
 
-
-
 **Step-by-step membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML**
-
 1. Membuat direktori baru, yaitu templates, dalam direktori main
-2. \[Dalam direktori templates] Membuat file baru untuk tampilan web, yaitu main.html, yang berisi nama aplikasi, nama, dan kelas
-3. \[Dalam views.py] Membuat function show\_main yang menerima request dan me-render tampilan main.html
-
-
+2. [Dalam direktori templates] Membuat file baru untuk tampilan web, yaitu main.html, yang berisi nama aplikasi, nama, dan kelas
+3. [Dalam views.py] Membuat function show_main yang menerima request dan me-render tampilan main.html
 
 **Step-by-step membuat sebuah routing pada urls.py aplikasi main**
-
 1. Membuat file urls.py dalam direktori main
-2. \[Dalam urls.py direktori main] Menambahkan routing dengan path('', show\_main, name='show\_main')
+2. [Dalam urls.py direktori main] Menambahkan routing dengan path('', show_main, name='show_main')
 
 
 
 **Melakukan routing pada proyek**
 
-1. \[Dalam urls.py direktori football-shop] Meng-import include dari django.urls
-2. \[Dalam urls.py direktori football-shop] Menambahkan path *path('', include('main.urls'))* untuk aplikasi main agar URL diarahkan ke rute yang didefinisikan dalam urls.py main, yaitu ke fungsi show\_main
-
-
+1. [Dalam urls.py direktori football-shop] Meng-import include dari django.urls
+2. [Dalam urls.py direktori football-shop] Menambahkan path *path('', include('main.urls'))* untuk aplikasi main agar URL diarahkan ke rute yang didefinisikan dalam urls.py main, yaitu ke fungsi show_main
 
 Sebelum di-deploy ke PWS, proyek saya push ke repositori GitHub terlebih dahulu.
 
-
-
-Step-by-step membuat deployment ke PWS
-
+**Step-by-step membuat deployment ke PWS**
 1. Mengakses web PWS dan login dengan SSO
 2. Membuat proyek baru Bernama footballshop
 3. Saya masuk ke project details dan membuka environs
@@ -91,37 +70,22 @@ Step-by-step membuat deployment ke PWS
    * git credential-cache exit
    * git push pws master
 
-
-
 **Link bagan Django request-response:** 
-
 https://drive.google.com/file/d/16utn4HcQdcFPHNyEqhr61_2M9_B3rNSu/view?usp=sharing
 
-
-
 **Penjelasan tentang kaitan urls.py, views.py, models.py, dan berkas html:**
-
 * urls.py -> menentukan rute request dari client
 * views.py -> mengatur logika aplikasi, ambil/olah data, lalu pilih template
 * models.py -> menghubungkan aplikasi dengan database
 * HTML (template) -> menampilkan data ke client sebagai response
 
-
-
 **Peran settings.py dalam proyek Django**
-
 File settings.py dalam proyek Django berperan sebagai pusat konfigurasi utama yang mengatur berbagai aspek aplikasi, seperti pengaturan database, daftar aplikasi yang digunakan, middleware, pengaturan keamanan,dll. Semua pengaturan global yang memengaruhi perilaku proyek Django didefinisikan di settings.py sehingga perubahan pada file ini akan berdampak pada seluruh aplikasi.
 
-
-
 **Cara kerja migrasi database di Django**
-
 Mekanisme migrasi database di Django bekerja dengan cara menerjemahkan perubahan yang dilakukan pada model python ke dalam bentuk perubahan struktur database. Ketika model diubah, perintah *makemigrations* digunakan untuk membuat file migrations yang berisi instruksi perubahan database, lalu perintah *migrate* dijalankan untuk menerapkan perubahan tersebut ke database secara otomatis.
 
-
-
 **Alasan framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak**
-
 Menurut saya, Django sering dijadikan permulaan pembelajaran pengembangan perangkat lunak karena framework ini menyediakan banyak fitur bawaan yang memudahkan pemula. Selain itu, dokumentasinya sangat lengkap dan komunitasnya besar sehingga mudah untuk mencari bantuan atau referensi. Struktur proyeknya juga jelas dan penggunaan prinsip best practice membuat Django sangat cocok untuk memahami konsep dasar pengembangan aplikasi web modern secara terstruktur dan efisien.
 
 **Feedback untuk asdos**
@@ -130,6 +94,7 @@ Asdos sangat helpful dan selalu siap siaga di discord setiap ada sesi tutorial.
 ------------------------------------------------------------------------
 TUGAS 3
 ------------------------------------------------------------------------
+
 **Step by step menambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID**
 1.	[Dalam views.py] Meng-import HttpResponse, serializers, dan model Product yang telah dibuat sebelumnya
 2.	[Dalam views.py] Membuat fungsi show_xml yang menerima parameter request. Fungsi ini akan mengambil semua objek dari model Product dan mengonversinya ke format XML
@@ -339,3 +304,40 @@ Cara untuk mengimplementasikan ketiga hal tersebut adalah dengan menggunakan pro
 Flexbox (Flexible Box Layout) adalah metode layout satu dimensi yang digunakan untuk mengatur elemen dalam satu baris atau kolom. Flexbox memungkinkan elemen untuk menyesuaikan ukuran dan posisi mereka secara fleksibel berdasarkan ruang yang tersedia. Kegunaan flexbox termasuk mengatur tata letak yang responsif, menyusun elemen secara horizontal atau vertikal, dan mengelola ruang antar elemen dengan mudah. 
 
 Grid layout adalah metode layout dua dimensi yang memungkinkan pengaturan elemen dalam baris dan kolom. Grid layout memberikan kontrol yang lebih besar atas tata letak yang kompleks dengan memungkinkan elemen untuk menempati beberapa baris atau kolom sekaligus. Kegunaan grid layout termasuk membuat tata letak halaman yang kompleks, mengatur elemen dalam struktur yang terorganisir/lebih rapi, dan menciptakan desain yang responsif dengan mudah.
+
+------------------------------------------------------------------------
+TUGAS 6
+------------------------------------------------------------------------
+
+**Apa perbedaan antara synchronous request dan asynchronous request?**
+Perbedaan antara synchronous request dan asynchronous request adalah:
+- Synchronous request adalah jenis permintaan di mana klien (seperti browser) mengirim permintaan ke server dan menunggu respons sebelum melanjutkan eksekusi kode berikutnya. Selama menunggu respons, klien tidak dapat melakukan tindakan lain. Contohnya adalah ketika memuat halaman web, browser akan menunggu hingga semua data dari server diterima sebelum menampilkan halaman tersebut.
+- Asynchronous request adalah jenis permintaan di mana klien mengirim permintaan ke server dan dapat melanjutkan eksekusi kode berikutnya tanpa menunggu respons dari server. Respons dari server akan ditangani secara terpisah ketika sudah diterima. Contohnya adalah penggunaan AJAX (Asynchronous JavaScript and XML) di mana data dapat dimuat di background tanpa mengganggu interaksi pengguna dengan halaman web.
+
+**Bagaimana AJAX bekerja di Django (alur request–response)?**
+AJAX bekerja di Django dengan cara mengirim permintaan HTTP secara asynchronous dari klien (browser) ke server Django tanpa perlu memuat ulang seluruh halaman. Berikut adalah alur request-response AJAX di Django:
+1. Pengguna melakukan aksi di halaman web (misalnya mengklik tombol) yang memicu permintaan AJAX menggunakan JavaScript.
+2. JavaScript mengirim permintaan HTTP (biasanya GET atau POST) ke endpoint tertentu di server Django.
+3. Server Django menerima permintaan tersebut dan memprosesnya melalui view yang sesuai.
+4. View di Django mengambil data yang diperlukan (misalnya dari database) dan mengembalikan respons dalam format yang diinginkan, seperti JSON atau HTML.
+5. JavaScript di sisi klien menerima respons dari server dan memperbarui bagian tertentu dari halaman web tanpa perlu memuat ulang seluruh halaman.
+6. Pengguna melihat perubahan pada halaman web secara real-time berdasarkan data yang diterima dari server.
+
+**Apa keuntungan menggunakan AJAX dibandingkan render biasa di Django?**
+Keuntungan menggunakan AJAX dibandingkan render biasa di Django adalah:
+1. AJAX lebih responsif. Dengan AJAX, hanya bagian tertentu dari halaman yang diperbarui sehingga pengguna tidak perlu menunggu seluruh halaman dimuat ulang. Hal ini membuat interaksi pengguna lebih cepat dan lancar.
+2. AJAX mengurangi beban server. Karena hanya data yang diperlukan yang dikirim dan diterima, bukan seluruh halaman, ini dapat mengurangi jumlah data yang ditransfer antara klien dan server sehingga mengurangi beban pada server.
+3. AJAX memungkinkan pengalaman pengguna yang lebih dinamis. Dengan AJAX, aplikasi web dapat memberikan interaksi yang lebih kompleks dan real-time, seperti memuat data baru tanpa mengganggu aktivitas pengguna.
+4. AJAX memungkinkan pengembangan aplikasi web yang lebih modular. Bagian-bagian dari halaman dapat diupdate secara independen, sehingga memudahkan pengembangan dan pemeliharaan kode.
+
+**Bagaimana cara memastikan keamanan saat menggunakan AJAX untuk fitur Login dan Register di Django?**
+Untuk memastikan keamanan saat menggunakan AJAX untuk fitur Login dan Register di Django, beberapa langkah yang dapat diambil adalah:
+1. Gunakan CSRF tokens. Pastikan setiap permintaan AJAX menyertakan token CSRF untuk melindungi aplikasi dari serangan Cross-Site Request Forgery (CSRF).
+2. Validasi input di server. Jangan hanya mengandalkan validasi di sisi klien. Selalu validasi data yang diterima di server untuk mencegah injeksi SQL atau data yang tidak valid.
+3. Gunakan HTTPS. Pastikan komunikasi antara klien dan server dienkripsi dengan menggunakan HTTPS untuk melindungi data sensitif, seperti username dan password, selama transmisi.
+4. Untuk melindungi aplikasi dari Cross-Site Scripting (XSS), pastikan untuk membersihkan dan memvalidasi semua input yang diterima dari pengguna sebelum menampilkannya kembali di halaman web.
+5. Batasi jumlah percobaan login. Implementasikan mekanisme untuk membatasi jumlah percobaan login yang gagal untuk mencegah serangan brute force.
+6. Gunakan mekanisme autentikasi yang aman. Pastikan untuk menggunakan metode autentikasi yang kuat, seperti hashing password, dan hindari menyimpan password dalam bentuk teks biasa.
+
+**Bagaimana AJAX mempengaruhi pengalaman pengguna (User Experience) pada website?**
+AJAX mempengaruhi pengalaman pengguna (User Experience) pada website dengan cara meningkatkan interaktivitas dan responsivitas aplikasi web. Dengan AJAX, pengguna dapat berinteraksi dengan halaman web tanpa perlu menunggu seluruh halaman dimuat ulang sehingga membuat pengalaman lebih cepat dan lancar. Misalnya, ketika pengguna mengisi formulir atau memuat data baru, perubahan dapat terjadi secara real-time tanpa mengganggu aktivitas mereka. Hal ini membuat aplikasi terasa lebih dinamis dan modern yang pada akhirnya meningkatkan kepuasan pengguna. Selain itu, AJAX juga memungkinkan pengembangan fitur-fitur yang lebih kompleks dan interaktif, seperti pencarian instan atau pembaruan konten otomatis, yang semakin memperkaya pengalaman pengguna di situs web.
